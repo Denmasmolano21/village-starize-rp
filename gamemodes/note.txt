@@ -1,0 +1,297 @@
+new Text: Text_Global[0];
+
+####################################################################################################
+
+new PlayerText: Text_Player[MAX_PLAYERS][0];
+
+####################################################################################################
+
+new Text: KOMA;
+new Text: TITIK;
+
+KOMA = TextDrawCreate(580.000, 72.000, ",");
+TextDrawLetterSize(KOMA, 0.488, 3.098);
+TextDrawAlignment(KOMA, 1);
+TextDrawColor(KOMA, 676996863);
+TextDrawSetShadow(KOMA, 0);
+TextDrawSetOutline(KOMA, 1);
+TextDrawBackgroundColor(KOMA, 255);
+TextDrawFont(KOMA, 2);
+TextDrawSetProportional(KOMA, 1);
+
+TITIK = TextDrawCreate(545.000, 67.000, ".");
+TextDrawLetterSize(TITIK, 0.449, 3.898);
+TextDrawAlignment(TITIK, 1);
+TextDrawColor(TITIK, 676996863);
+TextDrawSetShadow(TITIK, 0);
+TextDrawSetOutline(TITIK, 1);
+TextDrawBackgroundColor(TITIK, 255);
+TextDrawFont(TITIK, 3);
+TextDrawSetProportional(TITIK, 1);
+
+####################################################################################################
+
+new PlayerText: BG_MINUM[MAX_PLAYERS];
+new PlayerText: BG_MAKAN[MAX_PLAYERS];
+new PlayerText: ICON_MINUM[MAX_PLAYERS];
+new PlayerText: ICON_MAKAN[MAX_PLAYERS];
+new PlayerText: BAR_MINUM[MAX_PLAYERS];
+new PlayerText: BAR_MAKAN[MAX_PLAYERS];
+new PlayerText: BG_NAMA[MAX_PLAYERS];
+new PlayerText: NAMA_PLAYER[MAX_PLAYERS];
+new PlayerText: BG_SPEEDOMETER[MAX_PLAYERS];
+new PlayerText: HUD_SPEED[MAX_PLAYERS];
+new PlayerText: HUD_FUEL[MAX_PLAYERS];
+new PlayerText: HUD_HP[MAX_PLAYERS];
+new PlayerText: HUD_LOCK[MAX_PLAYERS];
+new PlayerText: SPEED[MAX_PLAYERS];
+new PlayerText: SPEED_MPH[MAX_PLAYERS];
+new PlayerText: FUEL[MAX_PLAYERS];
+new PlayerText: HP[MAX_PLAYERS];
+new PlayerText: LOCK[MAX_PLAYERS];
+new PlayerText: PERSEN_1[MAX_PLAYERS];
+new PlayerText: PERSEN_2[MAX_PLAYERS];
+new PlayerText: PERSEN_3[MAX_PLAYERS];
+new PlayerText: PERSEN_4[MAX_PLAYERS];
+new PlayerText: PERSEN_5[MAX_PLAYERS];
+new PlayerText: PERSEN_6[MAX_PLAYERS];
+
+BG_MINUM[playerid] = CreatePlayerTextDraw(playerid, 555.000, 130.000, "LD_SPAC:white");
+PlayerTextDrawTextSize(playerid, BG_MINUM[playerid], 53.000, 17.000);
+PlayerTextDrawAlignment(playerid, BG_MINUM[playerid], 1);
+PlayerTextDrawColor(playerid, BG_MINUM[playerid], 200);
+PlayerTextDrawSetShadow(playerid, BG_MINUM[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BG_MINUM[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, BG_MINUM[playerid], 255);
+PlayerTextDrawFont(playerid, BG_MINUM[playerid], 4);
+PlayerTextDrawSetProportional(playerid, BG_MINUM[playerid], 1);
+
+BG_MAKAN[playerid] = CreatePlayerTextDraw(playerid, 498.000, 130.000, "LD_SPAC:white");
+PlayerTextDrawTextSize(playerid, BG_MAKAN[playerid], 52.000, 17.000);
+PlayerTextDrawAlignment(playerid, BG_MAKAN[playerid], 1);
+PlayerTextDrawColor(playerid, BG_MAKAN[playerid], 200);
+PlayerTextDrawSetShadow(playerid, BG_MAKAN[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BG_MAKAN[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, BG_MAKAN[playerid], 255);
+PlayerTextDrawFont(playerid, BG_MAKAN[playerid], 4);
+PlayerTextDrawSetProportional(playerid, BG_MAKAN[playerid], 1);
+
+ICON_MINUM[playerid] = CreatePlayerTextDraw(playerid, 570.000, 133.000, "HUD:radar_diner");
+PlayerTextDrawTextSize(playerid, ICON_MINUM[playerid], -10.000, 10.000);
+PlayerTextDrawAlignment(playerid, ICON_MINUM[playerid], 1);
+PlayerTextDrawColor(playerid, ICON_MINUM[playerid], -1);
+PlayerTextDrawSetShadow(playerid, ICON_MINUM[playerid], 0);
+PlayerTextDrawSetOutline(playerid, ICON_MINUM[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, ICON_MINUM[playerid], 255);
+PlayerTextDrawFont(playerid, ICON_MINUM[playerid], 4);
+PlayerTextDrawSetProportional(playerid, ICON_MINUM[playerid], 1);
+
+ICON_MAKAN[playerid] = CreatePlayerTextDraw(playerid, 514.000, 133.000, "HUD:radar_dateFood");
+PlayerTextDrawTextSize(playerid, ICON_MAKAN[playerid], -11.000, 10.000);
+PlayerTextDrawAlignment(playerid, ICON_MAKAN[playerid], 1);
+PlayerTextDrawColor(playerid, ICON_MAKAN[playerid], -1);
+PlayerTextDrawSetShadow(playerid, ICON_MAKAN[playerid], 0);
+PlayerTextDrawSetOutline(playerid, ICON_MAKAN[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, ICON_MAKAN[playerid], 255);
+PlayerTextDrawFont(playerid, ICON_MAKAN[playerid], 4);
+PlayerTextDrawSetProportional(playerid, ICON_MAKAN[playerid], 1);
+
+BAR_MINUM[playerid] = CreatePlayerTextDraw(playerid, 579.000, 133.000, "100");
+PlayerTextDrawLetterSize(playerid, BAR_MINUM[playerid], 0.200, 1.098);
+PlayerTextDrawAlignment(playerid, BAR_MINUM[playerid], 1);
+PlayerTextDrawColor(playerid, BAR_MINUM[playerid], -56);
+PlayerTextDrawSetShadow(playerid, BAR_MINUM[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BAR_MINUM[playerid], -1);
+PlayerTextDrawBackgroundColor(playerid, BAR_MINUM[playerid], 255);
+PlayerTextDrawFont(playerid, BAR_MINUM[playerid], 1);
+PlayerTextDrawSetProportional(playerid, BAR_MINUM[playerid], 1);
+
+BAR_MAKAN[playerid] = CreatePlayerTextDraw(playerid, 522.000, 133.000, "100");
+PlayerTextDrawLetterSize(playerid, BAR_MAKAN[playerid], 0.200, 1.098);
+PlayerTextDrawAlignment(playerid, BAR_MAKAN[playerid], 1);
+PlayerTextDrawColor(playerid, BAR_MAKAN[playerid], -56);
+PlayerTextDrawSetShadow(playerid, BAR_MAKAN[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BAR_MAKAN[playerid], -1);
+PlayerTextDrawBackgroundColor(playerid, BAR_MAKAN[playerid], 255);
+PlayerTextDrawFont(playerid, BAR_MAKAN[playerid], 1);
+PlayerTextDrawSetProportional(playerid, BAR_MAKAN[playerid], 1);
+
+BG_NAMA[playerid] = CreatePlayerTextDraw(playerid, 498.000, 107.000, "LD_SPAC:white");
+PlayerTextDrawTextSize(playerid, BG_NAMA[playerid], 110.000, 21.000);
+PlayerTextDrawAlignment(playerid, BG_NAMA[playerid], 1);
+PlayerTextDrawColor(playerid, BG_NAMA[playerid], 200);
+PlayerTextDrawSetShadow(playerid, BG_NAMA[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BG_NAMA[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, BG_NAMA[playerid], 255);
+PlayerTextDrawFont(playerid, BG_NAMA[playerid], 4);
+PlayerTextDrawSetProportional(playerid, BG_NAMA[playerid], 1);
+
+NAMA_PLAYER[playerid] = CreatePlayerTextDraw(playerid, 521.000, 109.000, "Jarwo Sutanto");
+PlayerTextDrawLetterSize(playerid, NAMA_PLAYER[playerid], 0.349, 1.498);
+PlayerTextDrawAlignment(playerid, NAMA_PLAYER[playerid], 1);
+PlayerTextDrawColor(playerid, NAMA_PLAYER[playerid], -56);
+PlayerTextDrawSetShadow(playerid, NAMA_PLAYER[playerid], 1);
+PlayerTextDrawSetOutline(playerid, NAMA_PLAYER[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, NAMA_PLAYER[playerid], 150);
+PlayerTextDrawFont(playerid, NAMA_PLAYER[playerid], 0);
+PlayerTextDrawSetProportional(playerid, NAMA_PLAYER[playerid], 1);
+
+BG_SPEEDOMETER[playerid] = CreatePlayerTextDraw(playerid, 517.000, 343.000, "LD_SPAC:white");
+PlayerTextDrawTextSize(playerid, BG_SPEEDOMETER[playerid], 89.000, 87.000);
+PlayerTextDrawAlignment(playerid, BG_SPEEDOMETER[playerid], 1);
+PlayerTextDrawColor(playerid, BG_SPEEDOMETER[playerid], 200);
+PlayerTextDrawSetShadow(playerid, BG_SPEEDOMETER[playerid], 0);
+PlayerTextDrawSetOutline(playerid, BG_SPEEDOMETER[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, BG_SPEEDOMETER[playerid], 255);
+PlayerTextDrawFont(playerid, BG_SPEEDOMETER[playerid], 4);
+PlayerTextDrawSetProportional(playerid, BG_SPEEDOMETER[playerid], 1);
+
+HUD_SPEED[playerid] = CreatePlayerTextDraw(playerid, 529.000, 344.000, "HUD:radar_impound");
+PlayerTextDrawTextSize(playerid, HUD_SPEED[playerid], 18.000, 18.000);
+PlayerTextDrawAlignment(playerid, HUD_SPEED[playerid], 1);
+PlayerTextDrawColor(playerid, HUD_SPEED[playerid], -1);
+PlayerTextDrawSetShadow(playerid, HUD_SPEED[playerid], 0);
+PlayerTextDrawSetOutline(playerid, HUD_SPEED[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, HUD_SPEED[playerid], 255);
+PlayerTextDrawFont(playerid, HUD_SPEED[playerid], 4);
+PlayerTextDrawSetProportional(playerid, HUD_SPEED[playerid], 1);
+
+HUD_FUEL[playerid] = CreatePlayerTextDraw(playerid, 530.000, 367.000, "HUD:radar_spray");
+PlayerTextDrawTextSize(playerid, HUD_FUEL[playerid], 18.000, 18.000);
+PlayerTextDrawAlignment(playerid, HUD_FUEL[playerid], 1);
+PlayerTextDrawColor(playerid, HUD_FUEL[playerid], -1);
+PlayerTextDrawSetShadow(playerid, HUD_FUEL[playerid], 0);
+PlayerTextDrawSetOutline(playerid, HUD_FUEL[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, HUD_FUEL[playerid], 255);
+PlayerTextDrawFont(playerid, HUD_FUEL[playerid], 4);
+PlayerTextDrawSetProportional(playerid, HUD_FUEL[playerid], 1);
+
+HUD_HP[playerid] = CreatePlayerTextDraw(playerid, 530.000, 390.000, "HUD:radar_modGarage");
+PlayerTextDrawTextSize(playerid, HUD_HP[playerid], 14.000, 15.000);
+PlayerTextDrawAlignment(playerid, HUD_HP[playerid], 1);
+PlayerTextDrawColor(playerid, HUD_HP[playerid], -1);
+PlayerTextDrawSetShadow(playerid, HUD_HP[playerid], 0);
+PlayerTextDrawSetOutline(playerid, HUD_HP[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, HUD_HP[playerid], 255);
+PlayerTextDrawFont(playerid, HUD_HP[playerid], 4);
+PlayerTextDrawSetProportional(playerid, HUD_HP[playerid], 1);
+
+HUD_LOCK[playerid] = CreatePlayerTextDraw(playerid, 527.000, 409.000, "HUD:radar_light");
+PlayerTextDrawTextSize(playerid, HUD_LOCK[playerid], 19.000, 19.000);
+PlayerTextDrawAlignment(playerid, HUD_LOCK[playerid], 1);
+PlayerTextDrawColor(playerid, HUD_LOCK[playerid], -1);
+PlayerTextDrawSetShadow(playerid, HUD_LOCK[playerid], 0);
+PlayerTextDrawSetOutline(playerid, HUD_LOCK[playerid], 0);
+PlayerTextDrawBackgroundColor(playerid, HUD_LOCK[playerid], 255);
+PlayerTextDrawFont(playerid, HUD_LOCK[playerid], 4);
+PlayerTextDrawSetProportional(playerid, HUD_LOCK[playerid], 1);
+
+SPEED[playerid] = CreatePlayerTextDraw(playerid, 556.000, 348.000, "100");
+PlayerTextDrawLetterSize(playerid, SPEED[playerid], 0.229, 1.297);
+PlayerTextDrawAlignment(playerid, SPEED[playerid], 1);
+PlayerTextDrawColor(playerid, SPEED[playerid], -1);
+PlayerTextDrawSetShadow(playerid, SPEED[playerid], 1);
+PlayerTextDrawSetOutline(playerid, SPEED[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, SPEED[playerid], 150);
+PlayerTextDrawFont(playerid, SPEED[playerid], 1);
+PlayerTextDrawSetProportional(playerid, SPEED[playerid], 1);
+
+SPEED_MPH[playerid] = CreatePlayerTextDraw(playerid, 576.000, 348.000, "Mph");
+PlayerTextDrawLetterSize(playerid, SPEED_MPH[playerid], 0.229, 1.297);
+PlayerTextDrawAlignment(playerid, SPEED_MPH[playerid], 1);
+PlayerTextDrawColor(playerid, SPEED_MPH[playerid], -1);
+PlayerTextDrawSetShadow(playerid, SPEED_MPH[playerid], 1);
+PlayerTextDrawSetOutline(playerid, SPEED_MPH[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, SPEED_MPH[playerid], 150);
+PlayerTextDrawFont(playerid, SPEED_MPH[playerid], 1);
+PlayerTextDrawSetProportional(playerid, SPEED_MPH[playerid], 1);
+
+FUEL[playerid] = CreatePlayerTextDraw(playerid, 556.000, 368.000, "100");
+PlayerTextDrawLetterSize(playerid, FUEL[playerid], 0.229, 1.297);
+PlayerTextDrawAlignment(playerid, FUEL[playerid], 1);
+PlayerTextDrawColor(playerid, FUEL[playerid], -1);
+PlayerTextDrawSetShadow(playerid, FUEL[playerid], 1);
+PlayerTextDrawSetOutline(playerid, FUEL[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, FUEL[playerid], 150);
+PlayerTextDrawFont(playerid, FUEL[playerid], 1);
+PlayerTextDrawSetProportional(playerid, FUEL[playerid], 1);
+
+HP[playerid] = CreatePlayerTextDraw(playerid, 556.000, 390.000, "100");
+PlayerTextDrawLetterSize(playerid, HP[playerid], 0.229, 1.297);
+PlayerTextDrawAlignment(playerid, HP[playerid], 1);
+PlayerTextDrawColor(playerid, HP[playerid], -1);
+PlayerTextDrawSetShadow(playerid, HP[playerid], 1);
+PlayerTextDrawSetOutline(playerid, HP[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, HP[playerid], 150);
+PlayerTextDrawFont(playerid, HP[playerid], 1);
+PlayerTextDrawSetProportional(playerid, HP[playerid], 1);
+
+LOCK[playerid] = CreatePlayerTextDraw(playerid, 556.000, 411.000, "LOCKED");
+PlayerTextDrawLetterSize(playerid, LOCK[playerid], 0.229, 1.297);
+PlayerTextDrawAlignment(playerid, LOCK[playerid], 1);
+PlayerTextDrawColor(playerid, LOCK[playerid], 1018393087);
+PlayerTextDrawSetShadow(playerid, LOCK[playerid], 1);
+PlayerTextDrawSetOutline(playerid, LOCK[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, LOCK[playerid], 150);
+PlayerTextDrawFont(playerid, LOCK[playerid], 1);
+PlayerTextDrawSetProportional(playerid, LOCK[playerid], 1);
+
+PERSEN_1[playerid] = CreatePlayerTextDraw(playerid, 576.000, 367.000, "0");
+PlayerTextDrawLetterSize(playerid, PERSEN_1[playerid], 0.170, 0.898);
+PlayerTextDrawAlignment(playerid, PERSEN_1[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_1[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_1[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_1[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_1[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_1[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_1[playerid], 1);
+
+PERSEN_2[playerid] = CreatePlayerTextDraw(playerid, 580.000, 366.000, "/");
+PlayerTextDrawLetterSize(playerid, PERSEN_2[playerid], 0.188, 1.399);
+PlayerTextDrawAlignment(playerid, PERSEN_2[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_2[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_2[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_2[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_2[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_2[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_2[playerid], 1);
+
+PERSEN_3[playerid] = CreatePlayerTextDraw(playerid, 583.000, 372.000, "0");
+PlayerTextDrawLetterSize(playerid, PERSEN_3[playerid], 0.158, 0.898);
+PlayerTextDrawAlignment(playerid, PERSEN_3[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_3[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_3[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_3[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_3[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_3[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_3[playerid], 1);
+
+PERSEN_4[playerid] = CreatePlayerTextDraw(playerid, 576.000, 389.000, "0");
+PlayerTextDrawLetterSize(playerid, PERSEN_4[playerid], 0.170, 0.898);
+PlayerTextDrawAlignment(playerid, PERSEN_4[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_4[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_4[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_4[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_4[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_4[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_4[playerid], 1);
+
+PERSEN_5[playerid] = CreatePlayerTextDraw(playerid, 580.000, 388.000, "/");
+PlayerTextDrawLetterSize(playerid, PERSEN_5[playerid], 0.188, 1.399);
+PlayerTextDrawAlignment(playerid, PERSEN_5[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_5[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_5[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_5[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_5[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_5[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_5[playerid], 1);
+
+PERSEN_6[playerid] = CreatePlayerTextDraw(playerid, 583.000, 394.000, "0");
+PlayerTextDrawLetterSize(playerid, PERSEN_6[playerid], 0.170, 0.898);
+PlayerTextDrawAlignment(playerid, PERSEN_6[playerid], 1);
+PlayerTextDrawColor(playerid, PERSEN_6[playerid], -1);
+PlayerTextDrawSetShadow(playerid, PERSEN_6[playerid], 1);
+PlayerTextDrawSetOutline(playerid, PERSEN_6[playerid], 1);
+PlayerTextDrawBackgroundColor(playerid, PERSEN_6[playerid], 150);
+PlayerTextDrawFont(playerid, PERSEN_6[playerid], 1);
+PlayerTextDrawSetProportional(playerid, PERSEN_6[playerid], 1);
