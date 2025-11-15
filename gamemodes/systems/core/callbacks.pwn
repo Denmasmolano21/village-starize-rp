@@ -1,5 +1,5 @@
 // Core System - Callbacks
-// VS:RP v1.0.4
+// VS:RP v1.0.4 - IMPROVED
 
 public OnPlayerConnect(playerid)
 {
@@ -49,8 +49,12 @@ public OnPlayerDisconnect(playerid, reason)
     DestroyPlayerHUD(playerid);
     HideTextdrawsForPlayer(playerid);
 
-    KillTimer(PlayerSpeedometerTimer[playerid]);
-    PlayerSpeedometerTimer[playerid] = 0;
+    // Clean up timers
+    if(PlayerSpeedometerTimer[playerid])
+    {
+        KillTimer(PlayerSpeedometerTimer[playerid]);
+        PlayerSpeedometerTimer[playerid] = 0;
+    }
 
     g_MysqlRaceCheck[playerid]++;
     ResetPlayerData(playerid);
@@ -82,8 +86,17 @@ public OnPlayerSpawn(playerid)
     SetPlayerVirtualWorld(playerid, PlayerData[playerid][pVirtualWorld]);
     SetPlayerColor(playerid, COLOR_WHITE);
 
-    SetPlayerPos(playerid, SPAWN_X, SPAWN_Y, SPAWN_Z);
-    SetPlayerFacingAngle(playerid, SPAWN_A);
+    // Use saved position for returning players
+    if(PlayerData[playerid][pPosX] != 0.0 && PlayerData[playerid][pPosY] != 0.0)
+    {
+        SetPlayerPos(playerid, PlayerData[playerid][pPosX], PlayerData[playerid][pPosY], PlayerData[playerid][pPosZ]);
+        SetPlayerFacingAngle(playerid, PlayerData[playerid][pPosA]);
+    }
+    else // Use default spawn for new players
+    {
+        SetPlayerPos(playerid, SPAWN_X, SPAWN_Y, SPAWN_Z);
+        SetPlayerFacingAngle(playerid, SPAWN_A);
+    }
 
     SetCameraBehindPlayer(playerid);
     ShowPlayerHUD(playerid);
@@ -233,15 +246,35 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
     
     if(newstate == PLAYER_STATE_DRIVER)
     {
-        SetTimerEx("DelayedShowSpeedometer", 200, false, "d", playerid);
-        KillTimer(PlayerSpeedometerTimer[playerid]);
-        PlayerSpeedometerTimer[playerid] = SetTimerEx("UpdateSpeedometer", 50, true, "d", playerid);
+        new vehicleid = GetPlayerVehicleID(playerid);
+        if(vehicleid && IsValidVehicle(vehicleid))
+        {
+            // Initialize vehicle data if not set
+            if(VehicleData[vehicleid][vFuel] == 0)
+            {
+                InitializeVehicleData(vehicleid);
+            }
+            
+            SetTimerEx("DelayedShowSpeedometer", 200, false, "d", playerid);
+            
+            // Clean up old timer if exists
+            if(PlayerSpeedometerTimer[playerid])
+            {
+                KillTimer(PlayerSpeedometerTimer[playerid]);
+            }
+            
+            PlayerSpeedometerTimer[playerid] = SetTimerEx("UpdateSpeedometer", 50, true, "d", playerid);
+        }
     }
     else if(oldstate == PLAYER_STATE_DRIVER)
     {
         HideSpeedometer(playerid);
-        KillTimer(PlayerSpeedometerTimer[playerid]);
-        PlayerSpeedometerTimer[playerid] = 0;
+        
+        if(PlayerSpeedometerTimer[playerid])
+        {
+            KillTimer(PlayerSpeedometerTimer[playerid]);
+            PlayerSpeedometerTimer[playerid] = 0;
+        }
     }
     
     return 1;
@@ -249,22 +282,44 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
-    if(newkeys & KEY_UP)
+    // Check for vehicle entry attempt when locked
+    if(newkeys & KEY_UP || newkeys & KEY_SECONDARY_ATTACK)
     {
-        new vehicleid = GetPlayerVehicleID(playerid);
-        if(vehicleid && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+        if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
         {
-            new engine, lights, alarm, doors, bonnet, boot, objective;
-            GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-            
-            if(doors == 1)
+            new vehicleid = GetPlayerVehicleID(playerid);
+            if(vehicleid && IsValidVehicle(vehicleid))
             {
-                SetVehicleParamsEx(vehicleid, 0, lights, alarm, doors, bonnet, boot, objective);
-                ErrorMsg(playerid, "Kendaraan terkunci! Buka kunci terlebih dahulu dengan /unlock");
-                return 1;
+                new engine, lights, alarm, doors, bonnet, boot, objective;
+                GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+                
+                // Prevent engine start if locked
+                if(doors == 1 && (newkeys & KEY_UP))
+                {
+                    if(engine == 1)
+                    {
+                        SetVehicleParamsEx(vehicleid, 0, lights, alarm, doors, bonnet, boot, objective);
+                    }
+                    ErrorMsg(playerid, "Kendaraan terkunci! Buka kunci terlebih dahulu dengan /unlock");
+                    return 1;
+                }
             }
         }
     }
     
+    return 1;
+}
+
+public OnVehicleSpawn(vehicleid)
+{
+    // Reset vehicle data on spawn/respawn
+    InitializeVehicleData(vehicleid);
+    return 1;
+}
+
+public OnVehicleDeath(vehicleid, killerid)
+{
+    // Reset vehicle data on destruction
+    ResetVehicleData(vehicleid);
     return 1;
 }

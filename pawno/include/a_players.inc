@@ -184,7 +184,7 @@ native GetPlayerVehicleSeat(playerid);
 native RemovePlayerFromVehicle(playerid);
 native TogglePlayerControllable(playerid, toggle);
 native PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z);
-native ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0);
+native ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0);
 native ClearAnimations(playerid, forcesync = 0);
 native GetPlayerAnimationIndex(playerid); // return the index of any running applied animations (0 if none are running)
 native GetAnimationName(index, animlib[], len1, animname[], len2); // get the animation lib/name for the index
